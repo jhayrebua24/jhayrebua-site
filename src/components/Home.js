@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, StaticQuery, Link } from 'gatsby';
 import styled from 'styled-components';
 import Typist from 'react-typist';
 
@@ -17,6 +17,14 @@ const Overlay = styled.div`
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
+`;
+
+const Anchor = styled(Link).attrs(() => ({
+  className: 'text-gray-400 underline px-6 py-4 z-10 rounded-full',
+}))`
+  :hover {
+    color: #f56565;
+  }
 `;
 
 const BackgroundSection = ({ className }) => (
@@ -52,6 +60,7 @@ const BackgroundSection = ({ className }) => (
             <span className="text-red-500">Full-stack </span>
             Web Developer.
           </Typist>
+          <Anchor to="#about">Learn more about me.</Anchor>
         </BackgroundImage>
       );
     }}
@@ -66,6 +75,7 @@ const StyledBackgroundSection = styled(BackgroundSection)`
   background-size: cover;
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;

@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import { Scroll } from 'react-fns';
 import styled from 'styled-components';
 import Container from './Container';
+import Image from './image';
 
 const StyledNav = styled.nav`
   display: flex;
@@ -9,30 +11,18 @@ const StyledNav = styled.nav`
   align-items: center;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link).attrs(props => ({
+  className: `px-5 py-${
+    props.isScrolled ? `5` : `6`
+  } block text-gray-100 uppercase text-sm hover:text-gray-400`,
+}))`
   box-sizing: border-box;
-  :target {
-    background: black;
-  }
-  :hover {
-    border-bottom: 2px solid #fff;
-    transform: scale(1.05);
-  }
+  transition: padding 150ms ease-out;
 `;
 
 const StyledHeader = styled.header`
   background-color: ${props => (props.isScrolled ? '#F56565' : '')};
 `;
-
-// eslint-disable-next-line react/prop-types
-const Anchor = ({ name, to }) => (
-  <StyledLink
-    href={to}
-    className="px-5 py-6 block text-gray-100 uppercase text-sm hover:text-gray-400"
-  >
-    {name}
-  </StyledLink>
-);
 
 const Header = () => {
   return (
@@ -48,17 +38,23 @@ const Header = () => {
                   className="text-gray-100 hover:text-gray-400 uppercase text-sm"
                   href="#home"
                 >
-                  jrebua
+                  <Image className="w-10 rounded-full border-2 border-gray-100" />
                 </a>
                 <ul className="flex items-center p-0 m-0">
                   <li className="flex-1 m-0 mx-1">
-                    <Anchor to="#home" name="home" />
+                    <StyledLink isScrolled={+isScrolled} to="#home">
+                      home
+                    </StyledLink>
                   </li>
                   <li className="flex-1 m-0 mx-1">
-                    <Anchor to="#about" name="about" />
+                    <StyledLink isScrolled={+isScrolled} to="#about">
+                      about
+                    </StyledLink>
                   </li>
                   <li className="flex-1 m-0 mx-1">
-                    <Anchor to="#contact" name="contact" />
+                    <StyledLink isScrolled={+isScrolled} to="#contact">
+                      contact
+                    </StyledLink>
                   </li>
                 </ul>
               </StyledNav>
