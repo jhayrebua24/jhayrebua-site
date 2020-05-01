@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Jei Rebua`,
-    description: `Good day! My name is Jesson, a web developer based in the Philippines. I work as a developer for almost 3 years. I use ReactJS for my font-end and Laravel for back-end in my projects. I used to focus more on the backend because most of my projects only requires minimal design but recently i've been focusing on improving my skills more on CSS, designing UI/UX.`,
+    description: `Good day! My name is Jei Rebua, a web developer based in the Philippines.`,
     author: `@jhayrebua`,
   },
   plugins: [

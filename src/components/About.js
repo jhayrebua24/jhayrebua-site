@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import _debounce from 'lodash.debounce';
-import useIntersectionObserver from '@react-hook/intersection-observer';
+import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
 import Container from './Container';
@@ -46,25 +46,23 @@ const Item = ({ children }) => (
 
 const About = () => {
   const { activeContent, setActiveContent } = useContext(PageContext);
-  const [entry, observerRef] = useIntersectionObserver({
+  const [ref, inView] = useInView({
     threshold: 0.25,
   });
   const setSection = _debounce(() => setActiveContent('about'), 300);
-  if (entry.isIntersecting && activeContent !== 'about') {
+  if (inView && activeContent !== 'about') {
     setSection();
   }
 
   return (
-    <section ref={observerRef} className="py-12" id="about">
+    <section ref={ref} className="py-12" id="about">
       <Container>
         <Row className="text-gray-600">
           <Image className="w-40 rounded-full border-2 border-gray-500" />
           <p className="text-2xl mt-5">
             {'<'}
             <TextHighlight>Jesson Jei Rebua</TextHighlight>
-            {' dev="'}
-            <TextHighlight>full-stack</TextHighlight>
-            {'" />'}
+            {'... />'}
           </p>
           <div className="w-full px-5 py-5 xl:px-20 lg:px-15 md:px-10">
             <p className="text-red-500 uppercase text-2xl font-medium">
