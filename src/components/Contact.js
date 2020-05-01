@@ -30,7 +30,7 @@ const Contact = () => {
     threshold: 1,
   });
 
-  const setSection = _debounce(() => setActiveContent('contact'), 300);
+  const setSection = _debounce(() => setActiveContent('contact'), 100);
   if (inView && activeContent !== 'contact') {
     setSection();
   }

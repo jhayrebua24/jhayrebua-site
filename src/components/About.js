@@ -49,7 +49,7 @@ const About = () => {
   const [ref, inView] = useInView({
     threshold: 0.25,
   });
-  const setSection = _debounce(() => setActiveContent('about'), 300);
+  const setSection = _debounce(() => setActiveContent('about'), 100);
   if (inView && activeContent !== 'about') {
     setSection();
   }

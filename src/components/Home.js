@@ -63,7 +63,7 @@ const BackgroundSection = () => {
   });
 
   const imageData = data.bg.childImageSharp.fluid;
-  const setSection = _debounce(() => setActiveContent('home'), 300);
+  const setSection = _debounce(() => setActiveContent('home'), 100);
   if (inView && activeContent !== 'home') {
     setSection();
   }
