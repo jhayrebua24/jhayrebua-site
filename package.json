@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@react-hook/intersection-observer": "^2.0.10",
     "gatsby": "^2.21.0",
     "gatsby-background-image": "^1.1.1",
     "gatsby-image": "^2.4.0",

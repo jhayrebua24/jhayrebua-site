@@ -6,13 +6,15 @@ import Home from '../components/Home';
 import About from '../components/About';
 import Contact from '../components/Contact';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <Home />
-    <About />
-    <Contact />
-  </Layout>
-);
+const IndexPage = () => {
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <Home />
+      <About />
+      <Contact />
+    </Layout>
+  );
+};
 
 export default IndexPage;

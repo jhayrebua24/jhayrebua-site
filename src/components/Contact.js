@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import useIntersectionObserver from '@react-hook/intersection-observer';
+import _debounce from 'lodash.debounce';
 import styled from 'styled-components';
 import {
   FaFacebook,
@@ -7,6 +9,7 @@ import {
   FaEnvelopeOpen,
 } from 'react-icons/fa';
 import Container from './Container';
+import PageContext from './context/PageContext';
 
 const Contacts = styled.p`
   display: flex;
@@ -22,8 +25,21 @@ const Link = styled.a`
 `;
 
 const Contact = () => {
+  const { activeContent, setActiveContent } = useContext(PageContext);
+  const [entry, observerRef] = useIntersectionObserver({
+    threshold: 1,
+  });
+
+  const setSection = _debounce(() => setActiveContent('contact'), 300);
+  if (entry.isIntersecting && activeContent !== 'contact') {
+    setSection();
+  }
   return (
-    <section id="contact" className="bg-gray-900 py-6 text-gray-400">
+    <section
+      ref={observerRef}
+      id="contact"
+      className="bg-gray-900 py-6 text-gray-400"
+    >
       <Container>
         <div className="w-full px-5 py-5 xl:px-20 lg:px-15 md:px-10">
           <p className="text-red-500 uppercase text-2xl font-medium">CONTACT</p>

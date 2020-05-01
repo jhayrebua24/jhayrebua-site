@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import _debounce from 'lodash.debounce';
+import useIntersectionObserver from '@react-hook/intersection-observer';
 import styled from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
 import Container from './Container';
 import Image from './image';
+import PageContext from './context/PageContext';
 
 const Row = styled.div`
   display: flex;
@@ -42,8 +45,17 @@ const Item = ({ children }) => (
 );
 
 const About = () => {
+  const { activeContent, setActiveContent } = useContext(PageContext);
+  const [entry, observerRef] = useIntersectionObserver({
+    threshold: 0.25,
+  });
+  const setSection = _debounce(() => setActiveContent('about'), 300);
+  if (entry.isIntersecting && activeContent !== 'about') {
+    setSection();
+  }
+
   return (
-    <section className="py-12" id="about">
+    <section ref={observerRef} className="py-12" id="about">
       <Container>
         <Row className="text-gray-600">
           <Image className="w-40 rounded-full border-2 border-gray-500" />

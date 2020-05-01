@@ -7,15 +7,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Header from './Header';
 import Footer from './Footer';
 import './layout.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ pageError, children }) => {
   return (
     <>
-      <Header />
+      <Header pageError={!!pageError} />
       <main>{children}</main>
       <Footer />
     </>
@@ -24,6 +23,11 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  pageError: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+  pageError: false,
 };
 
 export default Layout;

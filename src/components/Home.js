@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { graphql, StaticQuery, Link } from 'gatsby';
+import React, { useContext } from 'react';
+import _debounce from 'lodash.debounce';
+import useIntersectionObserver from '@react-hook/intersection-observer';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import Typist from 'react-typist';
 
 import BackgroundImage from 'gatsby-background-image';
+import PageContext from './context/PageContext';
 
 const Overlay = styled.div`
   position: absolute;
@@ -27,47 +29,7 @@ const Anchor = styled(Link).attrs(() => ({
   }
 `;
 
-const BackgroundSection = ({ className }) => (
-  <StaticQuery
-    query={graphql`
-      query {
-        desktop: file(relativePath: { eq: "code-bg.jpg" }) {
-          childImageSharp {
-            fluid(quality: 90, maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      // Set ImageData.
-      const imageData = data.desktop.childImageSharp.fluid;
-      return (
-        <BackgroundImage id="#home" className={className} fluid={imageData}>
-          <Overlay />
-          <Typist
-            cursor={{
-              hideWhenDone: true,
-              hideWhenDoneDelay: 0,
-              element: <span className="text-6xl text-white">|</span>,
-            }}
-            className="z-10 text-gray-100 inline-block text-6xl font-medium leading-normal text-center max-w-2xl"
-          >
-            Hello!
-            <Typist.Backspace count={6} delay={1000} />I am{' '}
-            <span className="text-red-500">Jei</span>, a{' '}
-            <span className="text-red-500">Full-stack </span>
-            Web Developer.
-          </Typist>
-          <Anchor to="#about">Learn more about me.</Anchor>
-        </BackgroundImage>
-      );
-    }}
-  />
-);
-
-const StyledBackgroundSection = styled(BackgroundSection)`
+const StyledBackgroundSection = styled(BackgroundImage)`
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -80,7 +42,50 @@ const StyledBackgroundSection = styled(BackgroundSection)`
   align-items: center;
 `;
 
-BackgroundSection.propTypes = {
-  className: PropTypes.string.isRequired,
+const BackgroundSection = () => {
+  const { activeContent, setActiveContent } = useContext(PageContext);
+  const data = useStaticQuery(graphql`
+    query {
+      bg: file(relativePath: { eq: "code-bg.jpg" }) {
+        childImageSharp {
+          fluid(quality: 90, maxWidth: 1920) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `);
+  const [entry, observerRef] = useIntersectionObserver({
+    threshold: 0.8,
+  });
+
+  const imageData = data.bg.childImageSharp.fluid;
+  const setSection = _debounce(() => setActiveContent('home'), 300);
+  if (entry.isIntersecting && activeContent !== 'home') {
+    setSection();
+  }
+  return (
+    <div className="bg-black w-screen h-screen" id="home" ref={observerRef}>
+      <StyledBackgroundSection fluid={imageData}>
+        <Overlay />
+        <Typist
+          cursor={{
+            hideWhenDone: true,
+            hideWhenDoneDelay: 0,
+            element: <span className="text-6xl text-white">|</span>,
+          }}
+          className="z-10 text-gray-100 inline-block text-6xl font-medium leading-normal text-center max-w-2xl"
+        >
+          Hello!
+          <Typist.Backspace count={6} delay={1000} />I am{' '}
+          <span className="text-red-500">Jei</span>, a{' '}
+          <span className="text-red-500">Full-stack </span>
+          Web Developer.
+        </Typist>
+        <Anchor to="/#about">Learn more about me.</Anchor>
+      </StyledBackgroundSection>
+    </div>
+  );
 };
-export default StyledBackgroundSection;
+
+export default BackgroundSection;

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/prefer-default-export */
 /**
  * Implement Gatsby's Browser APIs in this file.
  *
@@ -5,3 +7,9 @@
  */
 
 // You can delete this file if you're not using it
+import React from 'react';
+import { PageProvider } from './src/components/context/PageContext';
+
+export const wrapRootElement = ({ element }) => {
+  return <PageProvider>{element}</PageProvider>;
+};
