@@ -5,3 +5,7 @@
  */
 
 // You can delete this file if you're not using it
+import rootElement from './src/rootElement';
+
+// eslint-disable-next-line import/prefer-default-export
+export const wrapPageElement = rootElement;

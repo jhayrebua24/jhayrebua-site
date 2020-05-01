@@ -7,9 +7,6 @@
  */
 
 // You can delete this file if you're not using it
-import React from 'react';
-import { PageProvider } from './src/components/context/PageContext';
+import rootElement from './src/rootElement';
 
-export const wrapRootElement = ({ element }) => {
-  return <PageProvider>{element}</PageProvider>;
-};
+export const wrapPageElement = rootElement;
