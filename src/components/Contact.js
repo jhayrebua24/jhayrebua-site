@@ -14,7 +14,7 @@ import PageContext from './context/PageContext';
 const Contacts = styled.p`
   display: flex;
   align-items: center;
-
+  margin-bottom: 1rem;
   & svg {
     margin-right: 7px;
   }
