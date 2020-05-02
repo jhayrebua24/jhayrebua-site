@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Jei Rebua`,
-    description: `Good day! My name is Jei Rebua, a web developer based in the Philippines.`,
+    title: `Jei Rebua - Web Developer`,
+    description: `Good day! I'm Jesson Jei Rebua, a web developer based in the Philippines.`,
     author: `@jhayrebua`,
   },
   plugins: [
@@ -32,6 +32,17 @@ module.exports = {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         displayName: false,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Roboto`,
+            variants: [`300`, `400`, `500`, `700`],
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

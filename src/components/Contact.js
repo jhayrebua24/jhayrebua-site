@@ -11,17 +11,23 @@ import {
 import Container from './Container';
 import PageContext from './context/PageContext';
 
-const Contacts = styled.p`
+const Contacts = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  & svg {
-    margin-right: 7px;
+
+  @media (max-width: 640px) {
+    justify-content: center;
   }
 `;
 
-const Link = styled.a`
-  text-decoration: underline;
+const Link = styled.a.attrs(() => ({
+  className:
+    'mx-2 rounded rounded-full p-3 bg-gray-700 text-white hover:text-indigo-300',
+}))`
+  & svg {
+    font-size: 2rem;
+  }
 `;
 
 const Contact = () => {
@@ -45,28 +51,20 @@ const Contact = () => {
             Full-stack Developer. Let&apos;s connect!
           </p>
           <Contacts>
-            <FaEnvelopeOpen />
-            jhayrebua123@gmail.com
-          </Contacts>
-          <Contacts>
-            <FaLinkedin />
+            <Link href="mailto::jhayrebua123@gmail.com">
+              <FaEnvelopeOpen />
+            </Link>
             <Link
               target="_blank"
               href="https://www.linkedin.com/in/jesson-jei-rebua-226ba0171/"
             >
-              Jesson Jei Rebua
+              <FaLinkedin />
             </Link>
-          </Contacts>
-          <Contacts>
-            <FaGithub />
             <Link target="_blank" href="https://github.com/jhayrebua24">
-              @jhayrebua24
+              <FaGithub />
             </Link>
-          </Contacts>
-          <Contacts>
-            <FaFacebook />
             <Link target="_blank" href="https://www.facebook.com/JhaYiEe">
-              @JhaYieE
+              <FaFacebook />
             </Link>
           </Contacts>
         </div>

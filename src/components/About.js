@@ -64,7 +64,7 @@ const About = () => {
             <TextHighlight>Jesson Jei Rebua</TextHighlight>
             {'... />'}
           </p>
-          <div className="w-full px-5 py-5 xl:px-20 lg:px-15 md:px-10">
+          <div className="w-full px-2 py-5 xl:px-20 lg:px-15 md:px-10">
             <p className="text-red-500 uppercase text-2xl font-medium">
               ABOUT ME
             </p>
