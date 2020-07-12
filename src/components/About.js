@@ -47,7 +47,7 @@ const Item = ({ children }) => (
 const About = () => {
   const { activeContent, setActiveContent } = useContext(PageContext);
   const [ref, inView] = useInView({
-    threshold: 0.25,
+    threshold: 0.3,
   });
   const setSection = _debounce(() => setActiveContent('about'), 100);
   if (inView && activeContent !== 'about') {

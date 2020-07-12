@@ -39,7 +39,7 @@ const Link = styled.a.attrs(() => ({
 const Contact = () => {
   const { activeContent, setActiveContent } = useContext(PageContext);
   const [ref, inView] = useInView({
-    threshold: 1,
+    threshold: 0.7,
   });
   const data = useStaticQuery(graphql`
     query {

@@ -62,6 +62,18 @@ const ContactForm = () => {
   return (
     <>
       {isLoading && <Loading />}
+      <form
+        data-netlify="true"
+        hidden
+        name="contact"
+        netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
+      >
+        <input type="text" name="name" />
+        <input type="text" name="subject" />
+        <textarea name="message" />
+        <input name="bot-field" type="hidden" />
+      </form>
       <Formik
         innerRef={formRef}
         initialValues={{

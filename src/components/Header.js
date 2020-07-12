@@ -116,6 +116,15 @@ const Header = ({ pageError }) => {
                   </li>
                   <li className="flex-1 m-0 mx-1">
                     <StyledLink
+                      isactive={+(activeContent === 'project')}
+                      isscrolled={+isScrolled}
+                      href="#project"
+                    >
+                      project
+                    </StyledLink>
+                  </li>
+                  <li className="flex-1 m-0 mx-1">
+                    <StyledLink
                       isactive={+(activeContent === 'contact')}
                       isscrolled={+isScrolled}
                       href="#contact"
