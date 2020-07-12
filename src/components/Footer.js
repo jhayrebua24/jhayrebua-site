@@ -2,7 +2,7 @@ import React from 'react';
 import { FaHeart } from 'react-icons/fa';
 
 const Footer = () => (
-  <footer className="py-2 bg-gray-200 text-center">
+  <footer className="py-2 bg-gray-900 text-gray-100 text-center">
     Crafted with <FaHeart className="inline" /> by{' '}
     <a className="text-red-500" href="https://www.facebook.com/JhaYiEe">
       Jei Rebua
